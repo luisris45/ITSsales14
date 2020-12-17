@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_partner_rif" model="ir.ui.view">
+            <field name="name">validartion rif</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group[1]/field[@name='vat']" position="replace">
+                    <field name="vat" placeholder="Ej.: J-012345678" string="RIF"  attrs="{'readonly': [('parent_id','!=',False)],'invisible': ['|',('company_type', '=', 'person'),('people_type_company','=','pjnd')],'required': [('company_type', '=', 'company'),('people_type_company','=','pjdo')]}"/>
+
+                </xpath>
+                <xpath expr="//label[@for='street']" position="replace">
+                    <label for="street" string="Dirección Fiscal"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="template_wh_vat">
+    <t t-call="web.html_container">
+        <div class="article">
+            <t t-set="doc_total_amount" t-value="0"/><!--Total monto documentos-->
+            <t t-set="exe_total_amount" t-value="0"/><!--total excento-->
+            <t t-set="base_tax_total_amount" t-value="0"/><!--total base imponible-->
+            <t t-set="base_tax_total_amount_iva" t-value="0"/><!--total base imponible exento-->
+            <t t-set="tax_total_amount" t-value="0"/><!--total impuesto causado-->
+            <t t-set="wh_tax_total_amount" t-value="0"/><!--total impuesto retenido-->
+            <t t-foreach="data" t-as="d">
+                <t t-set="doc_total_amount" t-value="doc_total_amount+d.wh_lines.invoice_id.amount_total" />
+                <!--t t-set="exe_total_amount" t-value="exe_total_amount+d.wh_lines.invoice_id.amount_total" /--> <!--El campo no esta definido en la vista. Se debe revisar-->
+                <t t-set="tax_total_amount" t-value="tax_total_amount+d.wh_lines.wh_iva_rate" />
+                <t t-set="wh_tax_total_amount" t-value="wh_tax_total_amount+d.total_tax_ret" />
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:30%;text-align:center;">
+                            <p style="font-size:18px;color:red; text-align:left;">
+                                Comprobante de Retención de IVA
+                            </p>
+                        </td>
+                        <td style="width:70%;">
+                            <p style="font-size:8px;text-align:left;">
+                                LEY IVA – ART. 11: “SERÁN RESPONSABLES DEL PAGO DE IMPUESTO EN CALIDAD DE AGENTES DE RETENCIÓN, LOS COMPRADORES O ADQUIRIENTES DE DETERMINADOS BIENES MUEBLES Y LOS RECEPTORES DE CIERTOS SERVICIOS A QUIENES LA ADMINISTRACIÓN TRIBUTARIA DESIGNE COMO TAL”
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:100%;">
+                    <tr>
+                        <td colspan="2">
+                            <p style="font-size:12px;text-align:left;">
+                                Providencia Administrativa N° SNAT/2015/0049 del 10/08/2015
+                            </p>
+                        </td>
+                        <td>
+                            <table border="1" style="width:100%;">
+                                <tr rowspan="2">
+                                    <td style="font-weight:bold;font-size: 1.125em;font-style: italic;border-left:1px solid;border-top:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Nro. Comprobante:</td> <!--/* 16px/16=2.5em */-->
+                                    <td style="font-size: 1.125em;font-style: italic;border-right:1px solid;border-top:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px"><span t-esc="d.number"/></td>
+                                    <td style="font-weight:bold;font-size: 1.125em;font-style: italic;border-top:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Fecha de Contabilización:</td>
+                                    <td style="font-size: 1.125em;font-style: italic;border-right:1px solid;border-top:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px"><span t-esc="model.get_date(d.date)"/></td>
+                                </tr>
+                                <tr></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <table style="width:100%;">
+                    <tr>
+                        <td colspan="2" style="text-align:left;border-left:1px solid;border-top:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Nombre y Apellido o Razón Social del Agente de Retención:</td>
+                        <td colspan="2" style="text-align:left;border-left:1px solid;border-top:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Registro de Identificación Fiscal del Agente de Retención</td>
+                        <td colspan="2" style="text-align:left;border-left:1px solid;border-top:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Período Fiscal</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px"><span t-esc="d.company_id.partner_id.name"/></td>
+                        <td colspan="2" style="text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                            <span t-esc= "d.company_id.partner_id.vat"/>
+                        </td>
+                        <td colspan="2" style="text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px"><span t-esc="model.get_period(d.date_ret)"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Dirección Fiscal del Agente de Retención:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px"><span t-esc="model.get_direction(d.company_id.partner_id)"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left;border-left:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Nombre y Apellido o Razón Social del Agente Retenido:</td>
+                        <td colspan="4" style="text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Registro de Identificación Fiscal del Agente Retenido</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px"><span t-esc="d.partner_id.name"/></td>
+                        <td colspan="4" style="text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+<!--                            <span t-esc="d.partner_id.vat"/> -->
+                            <span t-esc="document"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">Dirección Fiscal del Agente Retenido:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px"><span t-esc="model.get_direction(d.partner_id)"/></td>
+                    </tr>
+                    <tr>
+                                        <td colspan="6" style="padding: 5px;"></td>
+                    </tr>
+                </table>
+                <table width="100%;margin-top:30px;">
+                        <tr>
+                            <th width="6%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                Fecha de Operación
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                Nro. Factura
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                Nro. Control
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                Nro. Nota Débito
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-top:5px;padding-bottom:3px;">
+                                Nro. Nota Crédito
+                            </th>
+                            <th width="2%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-top:5px;padding-bottom:3px;">
+                                Tipo Trans.
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-top:5px;padding-bottom:3px;">
+                                Nro. Factura Afectada
+                            </th>
+                            <th width="6%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Monto Total de Documento
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                Compras sin Derecho a Crédito Fiscal
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Base Imponible
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                % Alicuota
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Impuesto Causado
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Base Reducido
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                % Alicuota Reducido
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Impuesto Causado Reducido
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Base Adicional
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Impuesto Causado Adicional
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                % Alicuota Adicional
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                % Retencion de IVA
+                            </th>
+                            <th width="8%" style="text-align:center;background-color:#A9F5F2;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Monto del Impuesto Retenido
+                            </th>
+                        </tr>
+                        <t t-set="number" t-value="model.get_t_type(d.wh_lines.invoice_id.type)"/>
+                        <t t-if="number == '02-COMP'">
+                            <t t-set="sign" t-value="-1"/>
+                        </t>
+                        <t t-if="number != '02-COMP'">
+                            <t t-set="sign" t-value="1"/>
+                        </t>
+                        <tr>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <span t-field="d.date_ret" t-options='{"format": "dd/MM/yyyy"}'/>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <t t-if="d.wh_lines.invoice_id.type == 'out_invoice'">
+                                    <span t-esc="d.wh_lines.invoice_id.name"/>
+                                </t>
+                                <t t-if="d.wh_lines.invoice_id.type == 'in_invoice'">
+                                    <span t-esc="d.wh_lines.invoice_id.supplier_invoice_number"/>
+                                </t>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <span t-esc="inv_nro_ctrl"/>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <t t-if="d.wh_lines.invoice_id.type == 'in_refund'">
+                                </t>
+                                <t t-if="d.wh_lines.invoice_id.type == 'out_refund'">
+                                    <span t-esc="d.wh_lines.invoice_id.name"/>
+                                </t>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <t t-if="d.wh_lines.invoice_id.type == 'out_refund'">
+
+                                </t>
+                                <t t-if="d.wh_lines.invoice_id.type == 'in_refund'">
+                                     <span t-esc="d.wh_lines.invoice_id.supplier_invoice_number"/>
+                                </t>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <span t-esc="model.get_t_type(d.wh_lines.invoice_id.type)"/>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <t t-if="d.wh_lines.invoice_id.type == 'in_refund'">
+                                    <span t-esc="inv_nro_control"/>
+                                </t>
+                                <t t-if="d.wh_lines.invoice_id.type == 'out_refund'">
+                                    <span t-esc="inv_nro_fact"/>
+                                </t>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <span t-esc="'{:,.2f}'.format(d.wh_lines.invoice_id.amount_total * sign).replace(',', '@').replace('.', ',').replace('@', '.')"/>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                  <t t-foreach="base_amount" t-as="doc">
+                                       <span t-esc="doc['base_exent']"/>
+                                  </t>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                 <t t-foreach="base_amount" t-as="doc">
+                                    <span t-esc="doc['base_general']"/>
+                                 </t>
+
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                 <t t-foreach="base_amount" t-as="doc">
+                                         <span t-esc="doc['rate_general']"/>
+                                </t>
+                            </td>
+
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <t t-foreach="base_amount" t-as="doc">
+                                    <span t-esc="doc['tax_general']"/>
+                                </t>
+                            </td>
+
+                           <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                 <t t-foreach="base_amount" t-as="doc">
+                                    <span t-esc="doc['base_reducida']"/>
+                                 </t>
+
+                           </td>
+                           <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                 <t t-foreach="base_amount" t-as="doc">
+                                         <span t-esc="doc['rate_reducida']"/>
+                                </t>
+                           </td>
+
+                           <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <t t-foreach="base_amount" t-as="doc">
+                                    <span t-esc="doc['tax_reducida']"/>
+                                </t>
+                           </td>
+
+                           <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                 <t t-foreach="base_amount" t-as="doc">
+                                    <span t-esc="doc['base_additional']"/>
+                                 </t>
+
+                           </td>
+                           <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                 <t t-foreach="base_amount" t-as="doc">
+                                        <span t-esc="doc['rate_additional']"/>
+                                </t>
+                           </td>
+
+                           <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                               <t t-foreach="base_amount" t-as="doc">
+                                    <span t-esc="doc['tax_additional']"/>
+                               </t>
+                           </td>
+
+                            <td width="8%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+                                <span t-esc="'{:,.2f}'.format(d.wh_lines.wh_iva_rate * sign).replace(',', '@').replace('.', ',').replace('@', '.')"/>
+                            </td>
+                            <td style="text-align:center;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                <span t-esc="'{:,.2f}'.format(d.total_tax_ret * sign).replace(',', '@').replace('.', ',').replace('@', '.')"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="14" style="padding: 5px;"></td>
+                        </tr>
+                        <tr >
+                            <td width="44%" colspan="6" style="text-align:right;"></td>
+                            <td width="10%" style="text-align:right;border-left:1px solid;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">Total General:</td>
+                            <td width="6%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+                                <t t-esc="'{:,.2f}'.format(doc_total_amount * sign).replace(',', '@').replace('.', ',').replace('@', '.')"/>
+                            </td>
+                            <td width="6%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+<!--                                <t t-foreach="base_amount" t-as="doc">-->
+                                    <span t-esc="base_exent"/>
+<!--                                </t>-->
+                            </td>
+                            <td width="6%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+
+                                    <span t-esc="sum_base_general"/>
+
+                            </td>
+                            <td colspan="1" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;"></td>
+                            <td width="6%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+
+                                    <span t-esc="sum_tax_general"/>
+
+                            </td>
+                            <td width="6%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+
+                                    <span t-esc="sum_base_reducida"/>
+
+                            </td>
+
+                            <td colspan="1" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;"></td>
+
+                            <td width="6%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+
+                                    <span t-esc="sum_tax_reducida"/>
+
+                            </td>
+                            <td width="6%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+
+                                    <span t-esc="sum_base_additional"/>
+
+                            </td>
+
+                            <td colspan="1" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;"></td>
+
+                            <td width="6%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+
+                                    <span t-esc="sum_tax_additional"/>
+
+                            </td>
+<!--                            <td colspan="2" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;"></td>-->
+                            <td width="8%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">
+                                <span t-esc="'{:,.2f}'.format(d.wh_lines.wh_iva_rate * sign).replace(',', '@').replace('.', ',').replace('@', '.')"/>
+                            </td>
+<!--                            <td width="8%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;padding-top:5px;padding-bottom:3px;">-->
+<!--                                &lt;!&ndash; se sustituye la linea&ndash;&gt;-->
+<!--                                &lt;!&ndash;t t-esc="'{:,.2f}'.format(tax_total_amount * sign).replace(',', '@').replace('.', ',').replace('@', '.')" /&ndash;&gt;-->
+<!--                                <span t-esc="'{:,.2f}'.format(d.wh_lines.invoice_id.amount_tax * sign).replace(',', '@').replace('.', ',').replace('@', '.')"/>-->
+<!--                            </td>-->
+                            <td width="8%" style="text-align:center;border-top:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:5px;padding-bottom:3px;">
+                                <t t-esc="'{:,.2f}'.format(wh_tax_total_amount * sign).replace(',', '@').replace('.', ',').replace('@', '.')"/>
+                            </td>
+                        </tr>
+                </table>
+                <br/>
+                <style>
+                    hr {
+                        border-color: #000;
+                        width: 60%;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 10px;
+                        margin-bottom: 0px;
+                    }
+                </style>
+                <table style="width:100%;margin-top:40px;">
+                    <tr>
+                         <br/> <br/>
+                        <td style="width:50%;text-align:center;padding:0px;margin:0px;">
+                            <hr/>
+                            <b><span t-esc="d.company_id.partner_id.name"/></b>
+                            <br/>
+                            <b>Agente de Retención (Sello y Firma)</b>
+                        </td>
+
+                        <td style="width:50%;text-align:center;padding:0px;margin:0px;">
+                            <hr/>
+                                <b><span t-esc="d.partner_id.name"/></b>
+                            <br/>
+                            <b>Firma del Beneficiario</b>
+                        </td>
+                    </tr>
+                </table>
+            </t>
+        </div>
+    </t>
+</template>
+
+    <record id="paperformat_withholding_vat_report" model="report.paperformat">
+        <field name="name">Vat Report</field>
+        <field name="orientation">Landscape</field>
+        <field name="header_line" eval="False"/>
+         <field name="margin_top">25</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">2</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">0</field>
+    </record>
+
+    <report
+            id="action_withholdong_vat_report"
+            string="Comprobante de IVA"
+            model="account.wh.iva"
+            report_type="qweb-pdf"
+            name="locv_withholding_iva.template_wh_vat"
+            file="locv_withholding_iva.template_wh_vat"
+            paperformat="locv_withholding_iva.paperformat_withholding_vat_report"/>
+
+
+
+</odoo>

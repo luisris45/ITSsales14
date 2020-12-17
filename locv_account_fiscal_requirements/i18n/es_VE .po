@@ -1,0 +1,583 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* locv_account_fiscal_requirements
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-22 21:58+0000\n"
+"PO-Revision-Date: 2020-02-22 21:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_res_company__acc_id
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_account_move__date_document
+msgid ""
+"Administrative date, generally is the date printed on invoice, this date is "
+"used to show in the Purchase Fiscal book"
+msgstr "Fecha Administrativa, generalmente es la fecha impresa en la factura, esta fecha es"
+"solía aparecer en el libro Fiscal de compras"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_account_tax__appl_type
+msgid "Aliquot Type"
+msgstr "Tipo de Alicuota"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__amount
+msgid "Amount"
+msgstr "Monto"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_l10n_ut__amount
+msgid "Amount of the tax unit in bs"
+msgstr "Monto de la unidad tributaria en bs"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_journal__type__bank
+msgid "Bank and Cheques"
+msgstr "Banco y Cheques"
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.view_vat_search
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_journal__type__cash
+msgid "Cash"
+msgstr "Efectivo"
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.actions.act_window,help:locv_account_fiscal_requirements.action_sale_debit_tree
+msgid "Click to create a customer debit note."
+msgstr "Haga clic para crear una nota de débito del cliente"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_account_move__comment_paper
+msgid "Comment"
+msgstr "Comentario"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model,name:locv_account_fiscal_requirements.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_account_move__nro_ctrl
+msgid "Control Number"
+msgstr "Número de Control"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__create_uid
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_search_info_partner_seniat__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__create_date
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_search_info_partner_seniat__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.actions.act_window,name:locv_account_fiscal_requirements.action_sale_debit_tree
+#: model:ir.ui.menu,name:locv_account_fiscal_requirements.menu_action_sale_debit_tree
+msgid "Customer Debit Notes"
+msgstr "Notas de Debito Cliente"
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.il_company_invoice_damaged
+msgid "Damaged Invoices Info"
+msgstr "Información de facturas dañadas"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_l10n_ut__date
+msgid "Date on which goes into effect the new Unit Tax Unit"
+msgstr "Fecha de entrada en vigencia de la nueva Unidad de Impuesto de Unidad"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_res_company__acc_id
+msgid "Default account used for invoices and lines from damaged invoices"
+msgstr "Cuenta predeterminada utilizada para facturas y líneas de facturas dañadas"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_res_company__jour_id
+msgid "Default journal for damaged invoices"
+msgstr "Diario predeterminado para facturas dañadas"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__display_name
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_search_info_partner_seniat__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_account_move__date_document
+msgid "Document Date"
+msgstr "Fecha de Documento"
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.il_company_invoice_damaged
+msgid "Does This Company Use Fiscal Printer?"
+msgstr "¿Esta empresa utiliza impresora fiscal?"
+
+#. module: locv_account_fiscal_requirements
+#: code:addons/locv_account_fiscal_requirements/wizard/wizard_nro_ctrl.py:0
+#, python-format
+msgid "El Numero de Control ya Existe"
+msgstr "El Numero de Control ya Existe"
+
+#. module: locv_account_fiscal_requirements
+#: code:addons/locv_account_fiscal_requirements/model/partner.py:0
+#, python-format
+msgid "Error occurred while validating the field(s) %s: %s"
+msgstr "Se produjo un error al validar los campos% s:% s"
+
+#. module: locv_account_fiscal_requirements
+#: code:addons/locv_account_fiscal_requirements/wizard/wizard_nro_ctrl.py:0
+#: code:addons/locv_account_fiscal_requirements/wizard/wizard_nro_ctrl.py:0
+#, python-format
+msgid "Error!"
+msgstr "¡Error!"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_account_move__sin_cred
+msgid "Exclude this document from fiscal book"
+msgstr "Excluir este documento del libro fiscal"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_tax__appl_type__exento
+msgid "Exempt"
+msgstr "Exento"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_res_company__fax
+msgid "Fax"
+msgstr "Fax"
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.account_invoice_ext_view_form_loc_ve1
+msgid "Fecha contable"
+msgstr "Fecha comtable"
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.account_invoice_ext_view_form_loc_ve1
+msgid "Fiscal Information"
+msgstr "Información Fiscal"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_account_move__invoice_printer
+msgid "Fiscal printer invoice number"
+msgstr ""
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_account_move__invoice_printer
+msgid ""
+"Fiscal printer invoice number, is the number of the invoice on the fiscal "
+"printer"
+msgstr "Número de factura de impresora fiscal"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_account_move__fiscal_printer
+msgid "Fiscal printer number"
+msgstr "Número de impresora fiscal"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_account_move__fiscal_printer
+msgid "Fiscal printer number, generally is the id number of the printer."
+msgstr "Número de impresora fiscal, generalmente es el número de identificación de la impresora."
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_journal__type__general
+msgid "General"
+msgstr "General"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_tax__appl_type__general
+msgid "General Aliquot"
+msgstr "Alicuota General"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_tax__appl_type__adicional
+msgid "General Aliquot + Additional"
+msgstr "Alicuota General + Adicional"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__id
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_search_info_partner_seniat__id
+msgid "ID"
+msgstr "ID"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_res_company__printer_fiscal
+msgid "Indicates that the company can operate a fiscal printer"
+msgstr "Indica que la compañía puede operar una impresora fiscal"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model,name:locv_account_fiscal_requirements.model_account_journal
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_res_company__jour_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model,name:locv_account_fiscal_requirements.model_account_move
+msgid "Journal Entries"
+msgstr "Asientos contables"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut____last_update
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_search_info_partner_seniat____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__write_uid
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_search_info_partner_seniat__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__write_date
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_search_info_partner_seniat__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_res_company__printer_fiscal
+msgid "Manages fiscal printer"
+msgstr "Administra la impresora fiscal"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_account_move__marck_paper
+msgid "Marck Paper"
+msgstr "Papel dañado"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_tax__appl_type__sdcf
+msgid "Not entitled to tax credit"
+msgstr "No tiene derecho a crédito fiscal"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,help:locv_account_fiscal_requirements.field_account_move__nro_ctrl
+msgid ""
+"Number used to manage pre-printed invoices, by law you will need to put here"
+" this number to be able to declarate on Fiscal reports correctly."
+msgstr "Número utilizado para gestionar las facturas preimpresas, por ley deberá ingresar aquí"
+"este número para poder declarar en los informes fiscales correctamente"."
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.account_invoice_ext_view_form_loc_ve1
+msgid "Número de Control"
+msgstr ""
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.account_invoice_ext_view_form_loc_ve1
+msgid "Número de Factura de Proveedor"
+msgstr ""
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.actions.act_window,help:locv_account_fiscal_requirements.action_sale_debit_tree
+msgid ""
+"ODOO's electronic invoicing allows to ease and fasten the\n"
+"                collection of customer payments. Your customer receives the\n"
+"                invoice by email and he can pay online and/or import it\n"
+"                in his own system."
+msgstr "a facturación electrónica de ODOO permite facilitar y fijar el \ n "
+"cobro de pagos de clientes. Su cliente recibe el \ n"
+"factura por correo electrónico y puede pagar en línea y / o importarla \ n"
+"en su propio sistema."
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_journal__type__situation
+msgid "Opening/Closing Situation"
+msgstr "Situación de apertura / cierre"
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.paper_anulado_view_invoice_search
+msgid "Papel Dañado"
+msgstr ""
+
+#. module: locv_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:locv_account_fiscal_requirements.account_invoice_ext_view_form_loc_ve1
+msgid "Papel para anular"
+msgstr ""
+
+#. module: locv_account_fiscal_requirements
+#: code:addons/locv_account_fiscal_requirements/wizard/wizard_invoice_nro_ctrl.py:0
+#, python-format
+msgid ""
+"Please confirm that you know what you're doing by checking the option "
+"bellow!"
+msgstr "Confirma que sabes lo que estás haciendo marcando la opción "
+"¡bramido!"
+
+#. module: locv_account_fiscal_requirements
+#: code:addons/locv_account_fiscal_requirements/wizard/wizard_nro_ctrl.py:0
+#, python-format
+msgid "Please confirm that you want to do this by checking the option"
+msgstr "Confirme que desea hacer esto marcando la opción"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_journal__type__purchase
+msgid "Purchase"
+msgstr "Compra"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_journal__type__purchase_debit
+msgid "Purchase Debit"
+msgstr "Débito de compra"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_journal__type__purchase_refund
+msgid "Purchase Refund"
+msgstr "Reembolso de compra"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:locv_account_fiscal_requirements.selection__account_tax__appl_type__reducido
+msgid "Reducted Aliquot"
+msgstr "Alicuota Reducida"
+
+#. module: locv_account_fiscal_requirements
+#: model:ir.model.fields,field_description:locv_account_fiscal_requirements.field_l10n_ut__name
+msgid "Reference number"
+msgstr "Número de Referencia"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,help:3mit_account_fiscal_requirements.field_l10n_ut__name
+msgid "Reference number under the law"
+msgstr "Número de referencia bajo la ley"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,field_description:3mit_account_fiscal_requirements.field_account_move__z_report
+msgid "Report Z"
+msgstr "Reporte Z"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,field_description:3mit_account_fiscal_requirements.field_account_move__loc_req
+msgid "Required by Localization"
+msgstr "Requerido por la Localizacion"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:3mit_account_fiscal_requirements.selection__account_journal__type__sale
+msgid "Sale"
+msgstr "venta"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:3mit_account_fiscal_requirements.selection__account_journal__type__sale_debit
+msgid "Sale Debit"
+msgstr "Débito de venta"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields.selection,name:3mit_account_fiscal_requirements.selection__account_journal__type__sale_refund
+msgid "Sale Refund"
+msgstr "Reembolso de venta"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,field_description:3mit_account_fiscal_requirements.field_l10n_ut__user_id
+msgid "Salesman"
+msgstr ""
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.ui.menu,name:3mit_account_fiscal_requirements.wizard_vat_search_action_menu
+msgid "Search RIF"
+msgstr "Buscar RIF"
+
+#. module: 3mit_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:3mit_account_fiscal_requirements.view_l10n_ut_filter
+msgid "Search Tax Unit"
+msgstr "Buscar Unidad Fiscal"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,help:3mit_account_fiscal_requirements.field_account_journal__type
+msgid ""
+"Select 'Sale' for customer invoices journals. Select 'Purchase' for supplier"
+" invoices journals. Select 'Cash' or 'Bank' for journals that are used in "
+"customer or supplier payments. Select 'General' for miscellaneous operations"
+" journals. Select 'Opening/Closing Situation' for entries generated for new "
+"fiscal years. Select 'Sale Debit' for customer debit note journals. Select "
+"'Purchase Debit' for supplier debit note journals."
+msgstr "Seleccione 'Venta' para diarios de facturas de clientes. Seleccione 'Comprar' para el proveedor "
+"diarios de facturas. Seleccione 'Efectivo' o 'Banco' para los diarios que se utilizan en"
+"pagos a clientes o proveedores. Seleccione 'General' para operaciones varias"
+"revistas. Seleccione 'Situación de apertura / cierre' para las entradas generadas para nuevas"
+"años fiscales. Seleccione 'Débito de venta' para diarios de notas de débito del cliente. Seleccione"
+"'Débito de compra' para diarios de notas de débito del proveedor."
+
+#. module: 3mit_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:3mit_account_fiscal_requirements.view_vat_search
+msgid "Seniat"
+msgstr ""
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,help:3mit_account_fiscal_requirements.field_account_move__sin_cred
+msgid "Set it true if the invoice is VAT excempt (Tax Exempt)"
+msgstr "Configúrelo verdadero si la factura está exenta de IVA (Exento)"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,help:3mit_account_fiscal_requirements.field_account_tax__appl_type
+msgid ""
+"Specify the aliquote type for the tax so it can be processed accrordly when "
+"the sale/purchase book is generatred"
+msgstr "Especifique el tipo de alícuota para el impuesto para que pueda procesarse de forma acorde cuando "
+"el libro de compra / venta es generado"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,field_description:3mit_account_fiscal_requirements.field_account_move__supplier_invoice_number
+msgid "Supplier Invoice Number"
+msgstr "Número de factura del proveedor"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model,name:3mit_account_fiscal_requirements.model_account_tax
+#: model:ir.model.fields,field_description:3mit_account_fiscal_requirements.field_account_tax__tax_id
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model,name:3mit_account_fiscal_requirements.model_l10n_ut
+#: model_terms:ir.ui.view,arch_db:3mit_account_fiscal_requirements.view_l10n_ut_form
+msgid "Tax Unit"
+msgstr "Unidad tributaria"
+
+#. module: 3mit_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:3mit_account_fiscal_requirements.view_l10n_ut_tree
+msgid "Tax Unit per date"
+msgstr "Unidad de impuestos por fecha"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,help:3mit_account_fiscal_requirements.field_account_tax__tax_id
+msgid ""
+"Tax relation to original tax, to be able to take off all data from invoices."
+msgstr "Relación fiscal con el impuesto original, para poder eliminar todos los datos de las facturas."
+
+#. module: 3mit_account_fiscal_requirements
+#: code:addons/3mit_account_fiscal_requirements/model/partner.py:0
+#, python-format
+msgid "The VAT [%s] looks like [%s] which is already being used by: %s"
+msgstr "El IVA [% s] se parece a [% s] que ya está siendo utilizado por:% s"
+
+#. module: 3mit_account_fiscal_requirements
+#: model_terms:ir.actions.act_window,help:3mit_account_fiscal_requirements.action_sale_debit_tree
+msgid ""
+"The discussions with your customer are automatically displayed at\n"
+"                the bottom of each invoice."
+msgstr "Las discusiones con su cliente se muestran automáticamente en \ n"
+"la parte inferior de cada factura."
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,help:3mit_account_fiscal_requirements.field_account_move__supplier_invoice_number
+msgid "The reference of this invoice as provided by the supplier."
+msgstr "La referencia de esta factura según lo provisto por el proveedor."
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,help:3mit_account_fiscal_requirements.field_account_move__loc_req
+msgid "This fields is for technical use"
+msgstr "
+Este campo es para uso técnico."
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,field_description:3mit_account_fiscal_requirements.field_account_journal__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.actions.act_window,name:3mit_account_fiscal_requirements.act_l10n_ut_2
+#: model:ir.ui.menu,name:3mit_account_fiscal_requirements.menu_action_l10n_ut
+msgid "Unidades tributarias"
+msgstr ""
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model,name:3mit_account_fiscal_requirements.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: 3mit_account_fiscal_requirements
+#: code:addons/3mit_account_fiscal_requirements/wizard/wizard_invoice_nro_ctrl.py:0
+#: code:addons/3mit_account_fiscal_requirements/wizard/wizard_invoice_nro_ctrl.py:0
+#: code:addons/3mit_account_fiscal_requirements/wizard/wizard_invoice_nro_ctrl.py:0
+#, python-format
+msgid "Validation error!"
+msgstr ""
+
+#. module: 3mit_account_fiscal_requirements
+#: code:addons/3mit_account_fiscal_requirements/model/partner.py:0
+#, python-format
+msgid "Vat Error !"
+msgstr ""
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,help:3mit_account_fiscal_requirements.field_l10n_ut__user_id
+msgid "Vendor user"
+msgstr ""
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.ui.menu,name:3mit_account_fiscal_requirements.menu_finance_fiscal_settings
+msgid "Venezuela Fiscal settings"
+msgstr "Configuración fiscal de Venezuela"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.ui.menu,name:3mit_account_fiscal_requirements.menu_venezuela_reporting
+msgid "Venezuela Reports"
+msgstr "Informes de Venezuela"
+
+#. module: 3mit_account_fiscal_requirements
+#: model_terms:ir.actions.act_window,help:3mit_account_fiscal_requirements.act_l10n_ut_2
+msgid ""
+"With Tax Unit you can create and manage the tax unit. The Tax Unit is "
+"established under the law of each country, is used for the withholding "
+"income and withholding vat."
+msgstr "Con Unidad fiscal puede crear y administrar la unidad fiscal. La unidad fiscal es "
+"establecido bajo la ley de cada país, se utiliza para la retención"
+"ISLR y retención de IVA"."
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.actions.act_window,name:3mit_account_fiscal_requirements.wizard_vat_search_action
+msgid "Wizard Search VAT"
+msgstr "Asistente de búsqueda IVA"
+
+#. module: 3mit_account_fiscal_requirements
+#: model_terms:ir.ui.view,arch_db:3mit_account_fiscal_requirements.view_vat_search
+msgid "Wizard to search partner on SENIAT"
+msgstr "Asistente para buscar Clientes en SENIAT"
+
+#. module: 3mit_account_fiscal_requirements
+#: code:addons/3mit_account_fiscal_requirements/wizard/wizard_invoice_nro_ctrl.py:0
+#, python-format
+msgid ""
+"You can run this process just if the invoice have Control Number, please "
+"verify the invoice and try again."
+msgstr ""
+
+#. module: 3mit_account_fiscal_requirements
+#: code:addons/3mit_account_fiscal_requirements/wizard/wizard_invoice_nro_ctrl.py:0
+#, python-format
+msgid ""
+"You must go to the company form and configure a journal and an account for "
+"damaged invoices"
+msgstr "Debe ir al formulario de empresa y configurar un diario y una cuenta para "
+"facturas dañadas"
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model.fields,field_description:3mit_account_fiscal_requirements.field_account_move__paper_anu
+msgid "papel dañado"
+msgstr ""
+
+#. module: 3mit_account_fiscal_requirements
+#: model:ir.model,name:3mit_account_fiscal_requirements.model_search_info_partner_seniat
+msgid "search.info.partner.seniat"
+msgstr "buscar información clientes seniat"

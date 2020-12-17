@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+    <!--
+    =====================================================
+    Retention Concept ISLR
+    =====================================================
+    -->
+        <record id="account_invoice_wh_islr_customer" model="ir.ui.view">
+            <field name="name">account.invoice.wh.islr.customer</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <!--xpath expr="//separator[@name='isep']" position="before"-->
+                <xpath expr="//page[@name='other_info']" position="before">
+                    <page string="Retención de ISLR" attrs="{'invisible':[('type', '=', 'entry')]}">
+                    <group col="6" colspan="4" >
+                        <field name="status"  colspan="2"/>
+                        <field name="islr_wh_doc_id" readonly="1"/>
+                    </group>
+                     </page>
+                </xpath>
+                <!--xpath expr="//separator[@name=&quot;isep&quot;]" position="attributes">
+                    <attribute name="string">Income Withholding</attribute>
+                </xpath-->
+            </field>
+        </record>
+
+
+            <record model="ir.ui.view" id="view_account_invoice_form_concept_islr">
+                <field name="name">account_invoice_concept_islr</field>
+                <field name="model">account.move</field>
+                <field name="inherit_id" ref="account.view_move_form"/>
+                <field name="arch" type="xml">
+                <xpath expr="//field[@name='quantity']" position="before">
+                    <field name="concept_id" required="1" force_save="1" />
+<!--                    <button-->
+<!--                        name="islr_wh_change_concept"-->
+<!--                        type="object"-->
+<!--                        icon="gtk-execute"-->
+<!--                        help="Mientras que la factura está abierta y los ingresos Wh aún están en borrador, es posible cambiar los conceptos" />-->
+                </xpath>
+                </field>
+            </record>
+
+<!--            <record model="ir.ui.view" id="view_account_invoice_form_concept_islr_customer">-->
+<!--                <field name="name">account.move.concept.islr.customer</field>-->
+<!--                <field name="model">account.move</field>-->
+<!--                <field name="inherit_id" ref="account.view_move_form"/>-->
+<!--                <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='quantity']" position="before">-->
+<!--                    <field name="concept_id" required="1"/>-->
+<!--                </xpath>-->
+<!--                </field>-->
+<!--            </record>-->
+
+<!--        <record model="ir.ui.view" id="view_invoice_line_form_islr">-->
+<!--            <field name="name">account_invoice_line_concept_islr</field>-->
+<!--            <field name="model">account.move</field>-->
+<!--            <field name="inherit_id" ref="account.view_move_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="before">-->
+<!--                    <field name="concept_id" required="1"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record model="ir.ui.view" id="view_invoice_line_tree_islr">-->
+<!--            <field name="name">account_invoice_line_tree_concept_islr</field>-->
+<!--            <field name="model">account.move</field>-->
+<!--            <field name="inherit_id" ref="account.view_invoice_line_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='name']" position="after">-->
+<!--                    <field name="concept_id" required="1"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>
+
+

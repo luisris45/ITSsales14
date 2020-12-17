@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="template_wh_muni2">
+    <t t-call="web.html_container">
+             <div class="article">
+                 <t t-foreach="data" t-as="d">
+                    <div class="header">
+                        <table cellspacing="0" cellpadding="0" border="0" style="width:100%; height:20px;">
+                            <tr style="height:20px;">
+                                <td style="width:20%;">
+                                     <img t-att-src="'data:image/png;base64,%s' %(to_text(d.company_id.logo))"  style="width:200px; height:100px; margin-top:28px; margin-bottom:0px;"/>
+                                </td>
+                                <td style="width:80%;text-align:center;">
+                                    <p style="font-size:18px; text-align:center;"><b>
+                                        COMPROBANTE DE RETENCIÓN DE IMPUESTO SOBRE ACTIVIDAD ECONÓMICA
+                                        <br/>MUNICIPIO VALENCIA</b>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:10%;">
+                                    &amp;nbsp;
+                                </td>
+                                <td style="width:90%;">
+                                    <p style="font-size:12px;text-align:justify;">
+                                       Reglamento Parcial Nro. 01 de la Ordenanza sobre Actividades Económicas en Materia de Retenciones - Art. 01:
+                                        Los agentes de retención, estan obligados a practicar la retención del impuesto previsto de la Ordenanza de impuesto sobre Actividades
+                                        Económicas y a enterar las cantidades de dinero retenidas ante las oficinas receptoras o dependencias administrativas competentes de la
+                                        Alcaldía del Municipio Valencia, dentro de los lapsos, condiciones y en la forma establecida en este Reglamento.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br/>
+                        <table style="width:100%;">
+                            <tr>
+                                 <td style="font-size:14px;width:20%;text-align:left;border:1px solid;border-top:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Numero Comprobante:</b><br/>
+                                    <span t-esc="number_comprobante"/>
+                                </td>
+                                <td colspan="2" style="font-size:14px;width:80%;">
+                                    &amp;nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="font-size:14px;width:40%;text-align:left;border-left:1px solid;border-top:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Nombre o Razón Social del Agente de Retención:</b>
+                                </td>
+                                <td style="font-size:14px;width:40%;text-align:left;border-left:1px solid;border-top:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Registro de Infomación Fiscal del Agente de Retención:</b>
+                                </td>
+                                <td style="font-size:14px;width:20%;text-align:left;border-left:1px solid;border-top:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Período Fiscal:</b>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-size:12px; width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="d.company_id.partner_id.name"/>
+                                </td>
+                                <td style="font-size:12px; width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="(d.company_id.partner_id.vat[2:] if 'VE' in d.company_id.partner_id.vat else d.company_id.partner_id.vat) if d.company_id.partner_id.vat else ''"/>
+                                </td>
+                                <td style="font-size:12px; width:20%;text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="model.get_period(d.date_ret)"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td colspan="3" style="font-size:14px; text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Dirección de la Sociedad:</b>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td colspan="3" style="font-size:12px; text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="model.get_direction(d.company_id.partner_id)"/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-size:14px; width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Nombre o Razón Social del Sujeto de Retención:</b>
+                                </td>
+                                <td style="font-size:14px; width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Registro de Infomación Fiscal del Sujeto de Retención:</b>
+                                </td>
+                                <td style="font-size:14px; width:20%;text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Fecha de Entrega:</b>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-size:12px; width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="d.partner_id.name"/>
+                                </td>
+                                <td style="font-size:12px; width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+<!--                                    <span t-esc="(d.partner_id.vat[2:] if 'VE' in d.partner_id.vat else d.partner_id.vat) if d.partner_id.vat else ''"/>-->
+                                <span t-esc="document"/>
+                                </td>
+                                <td style="font-size:12px; width:20%;text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-field="d.date_ret" t-options='{"format": "dd/MM/yyyy"}'/>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td style="font-size:14px; width:40%;text-align:left;border-left:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Dirección de la Sociedad:</b>
+                                </td>
+                                <td colspan="2" style="font-size:14px; width:40%;text-align:left;border-left:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Teléfono del Agente Retenido:</b>
+                                </td>
+
+                            </tr>
+                            <tr >
+                                <td style="font-size:12px; width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="d.partner_id.street"/>
+                                    <span t-esc="d.partner_id.street2"/>
+                                </td>
+                                <td colspan="2" style="font-size:12px; width:40%;text-align:left;border-left:1px solid;border-bottom:1px solid;border-right:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="d.partner_id.phone"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </t>
+
+                    <table width="100%;margin-top:30px;">
+                        <tr>
+                            <th style="font-size:14px; width:10%;text-align:center;background-color:#9c9c9c;border:1px solid #000;">
+                                Fecha Factura
+                            </th>
+                            <th style="font-size:14px; width:9%;text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                N° de Factura
+                            </th>
+                            <th style="font-size:14px; width:9%;text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                N° Control
+                            </th>
+                             <th width="8%" style="font-size:14px; text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                Nro. Nota Débito
+                            </th>
+                            <th width="8%" style="font-size:14px; text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:10px;padding-top:5px;padding-bottom:3px;">
+                                Nro. Nota Crédito
+                            </th>
+                            <th width="8%" style="font-size:14px; text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:10px;padding-top:5px;padding-bottom:3px;">
+                                Nro. Factura Afectada
+                            </th>
+                            <th width="6%" style="font-size:14px; text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Total Compra
+                            </th>
+                            <th width="8%" style="font-size:14px; text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:5px;padding-bottom:3px;">
+                                Monto sujeto
+                            </th>
+                            <th width="8%" style="font-size:14px; text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Porcentaje Retención
+                            </th>
+                            <th width="8%" style="font-size:14px; text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Neto pagado
+                            </th>
+                            <th width="8%" style="font-size:14px; text-align:center;background-color:#9c9c9c;border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                Impuesto Retenido
+                            </th>
+                        </tr>
+                        <t t-foreach="base_amount" t-as="doc">
+                            <tr>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                    <span t-esc="doc['fecha_factura']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                    <span t-esc="doc['nro_factura']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                    <span t-esc="doc['nro_control']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                    <span t-esc="doc['nro_debito']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                    <span t-esc="doc['nro_credito']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                    <span t-esc="doc['fact_afec']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                    <span t-esc="doc['total_compra']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                   <span t-esc="doc['monto_sujeto']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                   <span t-esc="doc['porc_ret']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                   <span t-esc="doc['neto_pagado']"/>
+                                </td>
+                                <td style="font-size:12px; text-align:center;border:1px solid #000;">
+                                   <span t-esc="doc['imp_retenido']"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                                <th colspan="6" width="52%" style="font-size:14px; text-align:left; border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    Total General
+                                </th >
+                                <th width="6%" style="font-size:14px; text-align:center; border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="sum_total_compra"/>
+                                </th>
+                                <th width="6%" style="font-size:14px; text-align:center; border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="sum_total_compra"/>
+                                </th>
+                                <th width="8%" style="font-size:14px; text-align:center; border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                     &amp;nbsp;
+                                </th>
+                                <th width="8%" style="font-size:14px; text-align:center; border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="b"/>
+                                </th>
+                                <th width="8%" style="font-size:14px; text-align:center; border:1px solid #000;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <span t-esc="sum_imp_retenido"/>
+                                </th>
+
+                            </tr>
+                    </table>
+
+
+                    <style>
+                        hr {
+                            border-color: #000;
+                            width: 60%;
+                            margin-left: auto;
+                            margin-right: auto;
+                            margin-top: 0px;
+                            margin-bottom: 0px;
+                        }
+                    </style>
+                 <br/>
+                 <t t-foreach="data" t-as="d">
+                     <div class="page">
+                        <table border="1" style="width:100%; margin-top:80px;">
+                            <tr>
+                                <td style="width:50%;text-align:left;padding:0px;margin:0px;">
+                                     <b>Fecha de Entrega:</b>
+                                    <b><span t-esc="d.date_ret"/></b>
+                                </td>
+                                <td style="width:50%;text-align:center;padding:0px;margin:0px;">
+                                    <hr/>
+                                    <b>Recibido por</b>
+
+                                    <br/>
+                                    <b>Firma y Sello</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                 <td style="font-size:14px;width:30%;text-align:left;border:1px solid;border-top:1px solid;padding-top:10px;padding-right:10px;padding-bottom:3px;padding-left:10px">
+                                    <b>Enviado a:</b><br/>
+                                    <span t-esc="d.company_id.email"/>
+                                </td>
+
+                            </tr>
+                        </table>
+                     </div>
+                 </t>
+
+
+        </div>
+    </t>
+</template>
+
+    <record id="paperformat_withholding_muni_report" model="report.paperformat">
+        <field name="name">Muni Report</field>
+        <field name="orientation">Landscape</field>
+        <field name="header_line" eval="False"/>
+         <field name="margin_top">45</field>
+        <field name="margin_right">5</field>
+        <field name="margin_bottom">2</field>
+        <field name="margin_left">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">45</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+            id="action_withholdong_muni_report"
+            string="Comprobante de Retencion Municipal"
+            model="account.wh.munici"
+            report_type="qweb-pdf"
+            name="locv_withholding_muni.template_wh_muni2"
+            file="locv_withholding_muni.template_wh_muni2"
+            paperformat="locv_withholding_muni.paperformat_withholding_muni_report"/>
+
+
+
+</odoo>

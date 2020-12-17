@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_partner_rif" model="ir.ui.view">
+            <field name="name">validartion rif</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='type']" position="before">
+                     <field name="nationality" string="Tipo de Documento" attrs="{'required': [('company_type', '=', 'person')],'invisible':[('company_type', '=', 'company')]}"/>
+                     <field name="identification_id" placeholder="Ej. 19763505" attrs="{'required': [('company_type', '=', 'person')],'invisible':[('company_type', '=', 'company')]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="contacts_ci_filter" model="ir.ui.view">
+            <field name="name">res.partner.filter</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search/field[@name='name']" position="after">
+                     <field name="identification_id" string="Cedula Identidad" filter_domain="[('identification_id', 'ilike', self)]"/>
+                     <field name="vat" string="RIF" filter_domain="[('vat', 'ilike', self)]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+
+

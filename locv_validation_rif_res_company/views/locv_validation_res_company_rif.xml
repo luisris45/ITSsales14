@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_res_company_rif" model="ir.ui.view">
+            <field name="name">validation rif</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//field[@name='vat']" position="replace">
+                        <field name="vat" placeholder="Ej.: J-012345678" string="RIF" required="1"/>
+                    </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
+

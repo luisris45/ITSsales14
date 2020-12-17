@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+
+    <!--
+    =====================================================
+    Partners Extension Income
+    =====================================================
+    -->
+
+        <record id="res_partner_wh_islr" model="ir.ui.view">
+            <field name="name">res.partner.wh.islr</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="locv_base_withholdings.wh_partner"/>
+            <field name="arch" type="xml">
+                <xpath expr="//separator[@name='vsep']" position="before" >
+                     <xpath expr="//separator[@name='vsep']" position="attributes">
+                                 <attribute name="string"><center><h3><a><b>Retención de Ingresos (ISLR)</b></a></h3></center></attribute>
+                      </xpath>
+                    <newline/>
+                        <group col="6" colspan="2">
+                            <field name="islr_withholding_agent"/>
+                            <field name="spn"/>
+                            <field name="islr_exempt"/>
+                        </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="partner_ext_islr_view">
+            <field name="name">partner_ext_islr_view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            <xpath expr="//group[@name='accounting_entries']" position="after">
+                <group string="Diarios de Retención de ISLR">
+                        <separator string="Compra" name="purchase_ISLR_journal"/>
+                        <field name="purchase_islr_journal_id"/>
+                        <separator string="Venta" name="sales_ISLR_journal"/>
+                        <field name="sale_islr_journal_id"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

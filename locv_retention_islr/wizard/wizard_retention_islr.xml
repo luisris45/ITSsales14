@@ -1,0 +1,68 @@
+<odoo>
+  <data>
+      <record id="view_retention_islr_wizard" model="ir.ui.view">
+            <field name="name">account.retention.islr.form</field>
+                <field name="model">account.retention.islr</field>
+                <field name="arch" type="xml">
+                    <form string="Solicitud de Reporte de ISLR">
+                        <field invisible="1" name="state"/>
+                        <div states="choose">
+                            <group colspan="2" col="2">
+                                <field name="company" string="Empresa"/>
+                            </group>
+                            <group colspan="2" col="2">
+                                <group>
+                                    <field name="start_date" string="Fecha de inicio"/>
+<!--                                    <field name="concepto" string="Por Concepto"/>-->
+<!--                                    <field name="todos" string="Todos" attrs="{'invisible':[('concepto', '=', False)], 'required':[('concepto', '=', True)]}" colspan="2" />-->
+<!--                                    <field name="concept" attrs="{'invisible':[('concepto', '=', False)], 'required':[('concepto', '=', True)]}" nolabel="1" colspan="2" widget="many2many_checkboxes"/>-->
+                                </group>
+                                <group>
+                                    <field name="end_date" string="Fecha Final"/>
+<!--                                    <field name="supplier" string="Por Proveedor"/>-->
+<!--                                    <field name="partner_id" domain="[('supplier','=', True)]" attrs="{'invisible':[('supplier', '=', False)], 'required':[('supplier', '=', True)]}" nolabel="1" colspan="2"/>-->
+<!--                                    &lt;!&ndash;field name="session" string="Sesión en Progreso" domain="[('start_at','>=', start_date),('start_at','&lt;', end_date),('config_id','=', pos_config_ids),('user_id','=', uid), ]" options="{'no_create': True, 'no_create_edit':True}"/&ndash;&gt;-->
+<!--                                    <field name="customer" string="Por Cliente"/>-->
+<!--                                    <field name="clientes" domain="[('customer','=', True)]" attrs="{'invisible':[('customer', '=', False)], 'required':[('customer', '=', True)]}" nolabel="1" colspan="2"/>-->
+                                </group>
+                            </group>
+                        </div>
+                        <div states="get">
+                            <group>
+                                <field name="name" colspan="4" invisible="1"/>
+                                <field name="report" filename="name" colspan="4"/>
+                            </group>
+                        </div>
+                        <footer states="choose">
+                            <button name="generate_retention_islr_pdf" string="Imprimir PDF" type="object" class="btn-primary"/>
+                            <button name="generate_retention_islr_xls" string="Imprimir XLS" type="object" class="btn-primary"/>
+                            <button string="Cancel" class="btn-default" special="cancel" />
+                        </footer>
+                        <footer states="get">
+                            <button special="cancel" string="Cancel" class="oe_highlight" />
+                        </footer>
+                    </form>
+                </field>
+        </record>
+
+        <record id="action_retention_islr" model="ir.actions.act_window">
+        	<field name="name">Solicitud de Reporte de ISLR</field>
+        	<field name="res_model">account.retention.islr</field>
+        	<field name="binding_view_types">form</field>
+        	<field name="view_mode">form</field>
+        	<field name="view_id" ref="view_retention_islr_wizard"/>
+        	<field name="target">new</field>
+    	</record>
+
+<!--        <menuitem-->
+<!--                 id="retention_islr"-->
+<!--                 parent="account.menu_finance"-->
+<!--                 name="Reportes"-->
+<!--                 sequence="6"-->
+<!--        />-->
+      <menuitem id="retention_islr_finanzas" name="Financiero" parent="account.menu_finance_reports"  sequence="1"/>
+      <!--menuitem id="analitico_cuenta" name="Analítico por Cuenta" parent="retention_islr_finanzas" action="action_retention_islr" sequence="1"/-->
+      <menuitem id="retention_islr_details" name="Detalle Retención ISLR" parent="retention_islr_finanzas" action="action_retention_islr" sequence="2"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,34 @@
+<odoo>
+  <data>
+      <record id="view_partner_form_inherit1" model="ir.ui.view">
+         <field name="name">res.partner.form.inherit</field>
+         <field name="model">res.partner</field>
+         <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="people_type_individual" attrs="{'required': [('company_type', '=', 'person')],'invisible':[('company_type', '=', 'company')]}"/>
+                    <field name="people_type_company" attrs="{'required': [('company_type', '=', 'company')],'invisible':[('company_type', '=', 'person')]}" />
+                    <field name="value_parent" invisible="1" />
+                </xpath>
+                <xpath expr="//field[@name='street']" position="attributes">
+                       <attribute name="attrs">{'required': [('value_parent','=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street2']" position="attributes">
+                      <attribute name="attrs">{'required': [('value_parent','=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='city']" position="attributes">
+                     <attribute name="attrs">{'required': [('company_type','=','company')]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                     <attribute name="attrs">{'required': [('company_type','=','company')]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='zip']" position="attributes">
+                     <attribute name="attrs">{'required': [('company_type','=','company')]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="attributes">
+                     <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+      </record>
+  </data>
+</odoo>

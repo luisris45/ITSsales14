@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_locv_withholding_muni_account_wh_munici,locv_withholding_muni.account_wh_munici,model_account_wh_munici,locv_grupo_localizacion.group_localizacion,1,1,1,1
+access_locv_withholding_muni_account_wh_munici_line,locv_withholding_muni.account_wh_munici_line,model_account_wh_munici_line,locv_grupo_localizacion.group_localizacion,1,1,1,1

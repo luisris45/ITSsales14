@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_locv_account_advance_payment_account_advanced_payment,locv_account_advanced_payment.account_advanced_payment",model_account_advanced_payment,locv_grupo_localizacion.group_localizacion,1,1,1,1

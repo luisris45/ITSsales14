@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="report.paperformat" id="paperformat_account_invoice_cliente">
+            <field name="name">paperformat.account.invoice</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">50</field>
+            <field name="margin_right">10</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">10</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">50</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+
+
+     <template id="template_cliente" >
+        <t t-call="web.html_container">
+            <div class="page">
+<!--                <t t-call="locv_reporte_facturacion.header_reporte"/>-->
+                <div class="header" >
+                            <t t-foreach="company" t-as="o">
+                                <table cellspacing="0" cellpadding="0" border="0" style="width:100%; height:55px;">
+                                    <tr style="height:20px;">
+                                        <td style="width:30%;">
+                                             <img t-att-src="'data:image/png;base64,%s' %(to_text(company.logo))" style="width:260px; height:50px; margin-top:40px; margin-bottom:0px;"/>
+                                        </td>
+                                        <td style="width:70%; font-size: 14px;" class="text-right">
+                                            <b><span t-field="o.name" /></b>,&amp;nbsp;<b>RIF.:&amp;nbsp;</b><span t-field="o.vat"/><br/>
+                                            <span t-esc="street"/>&amp;nbsp;<span t-field="o.street2"/><br/>
+                                            <span t-esc="zip_code"/>&amp;nbsp;<span t-esc="city"/>&amp;nbsp;<span t-field="o.country_id"/><br/>
+                                            <b>TLF.:&amp;nbsp;</b><span t-field="o.phone"/>,&amp;nbsp;<b>EMAIL:&amp;nbsp;</b><span t-field="o.email"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>
+                </div>
+                    <div class="article">
+                        <div class="text-left">
+                            <t t-foreach="infos" t-as="info">
+                            <!--////////////////////////// FACTURAS NORMALES /////////////////////////////////////////////////////// -->
+                                <t t-if="origin_check == 'FAC'">
+                                    <!-- ////////////////////// COMPAÑIA Agrosun /////////////////////-->
+
+                                        <table style="width:100%; font-size: 14px;">
+                                            <tr>
+                                                <td colspan="6" class="text-left"> <b>Fecha: </b><span t-esc="info['fecha']"/> </td>
+                                                <td colspan="2" ><p class="text-left">&amp;nbsp;</p></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6" class="text-left"> <b>N° de factura: </b><span t-esc="info['n_factura']"/> </td>
+                                                <td colspan="2" ><p class="text-left">&amp;nbsp;</p></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td colspan="6" class="text-left"> <b>N° Control: </b><span t-esc="info['nro_ctrl']"/> </td>
+                                                <td colspan="2" ><p class="text-left">&amp;nbsp;</p></td>
+                                            </tr>
+<!--                                            <tr><td>&amp;nbsp;</td></tr>-->
+<!--                                            <tr><td>&amp;nbsp;</td></tr>-->
+                                            <tr><td>&amp;nbsp;</td></tr>
+                                            <tr><td>&amp;nbsp;</td></tr>
+
+                                            <tr class="text-left table-bordered" style="height:20px; border: 1px solid #000000;width:100%;">
+                                                <td colspan="6"  class="text-left table-bordered" style=" vertical-align: middle; border: 1px solid #000000; "><b>&amp;nbsp;RAZON SOCIAL:</b> <span t-esc="info['razon']"/> </td>
+                                                <td colspan="2" class="text-left table-bordered" style=" vertical-align: middle; border: 1px solid #000000; "><b>&amp;nbsp;<span t-esc="info['name_document']"/>:</b>&amp;nbsp;&amp;nbsp;&amp;nbsp;<span t-esc="info['rif']"/></td>
+                                            </tr>
+                                            <tr class="text-left table-bordered" style="height:20px; border: 1px solid #000000;width:100%;">
+                                                <td colspan="6" class="text-left table-bordered" style="width:75%; vertical-align: middle; border: 1px solid #000000; "><b>&amp;nbsp;DIRECCION:</b> <span t-esc="info['direccion']"/></td>
+                                                <td colspan="2" class="text-left table-bordered" style="width:25%; vertical-align: middle; border: 1px solid #000000; "><b>&amp;nbsp;TEL:</b> <span t-esc="info['telefono']"/></td>
+                                            </tr>
+
+                                            <tr><td>&amp;nbsp;</td></tr>
+                                            <tr><td>&amp;nbsp;</td></tr>
+                                            <tr><td>&amp;nbsp;</td></tr>
+
+                                            <tr class="text-center table-bordered" style="height:20px; border: 1px solid #000000;">
+                                                <th class="text-center table-bordered" style="width:2%; vertical-align: middle; border: 1px solid #000000;background-color:#7A99AF;">&amp;nbsp;N°&amp;nbsp;</th>
+                                                <th class="text-center table-bordered" style="width:13%; vertical-align: middle; border: 1px solid #000000;background-color:#7A99AF;">COD. PRODUCTO</th>
+                                                <th class="text-center table-bordered" style="width:5%; vertical-align: middle; border: 1px solid #000000;background-color:#7A99AF;">&amp;nbsp;CANT&amp;nbsp;</th>
+                                                <th class="text-center table-bordered" style="width:8%; vertical-align: middle; border: 1px solid #000000;background-color:#7A99AF;"> UDM</th>
+                                                <th class="text-center table-bordered" style="width:35%; vertical-align: middle; border: 1px solid #000000;background-color:#7A99AF;">DESCRIPCION</th>
+                                                <th class="text-center table-bordered" style="width:8%; vertical-align: middle; border: 1px solid #000000;background-color:#7A99AF;">% IVA</th>
+                                                <th class="text-center table-bordered" style="width:18%; vertical-align: middle; border: 1px solid #000000;background-color:#7A99AF;">PRECIO UNITARIO</th>
+                                                <th class="text-center table-bordered" style="width:18%; vertical-align: middle; border: 1px solid #000000;background-color:#7A99AF;">TOTAL</th>
+                                            </tr>
+                                            <t t-set="cont" t-value="1"/>
+                                                <t t-foreach="docs" t-as="doc">
+                                                     <tr class="text-center" style="height:20px; border: 1px solid #000000;">
+                                                        <td class="text-center " style="width:2%;   vertical-align: middle;">&amp;nbsp;<span t-esc="doc['n']"/>&amp;nbsp;</td>
+                                                        <td class="text-center" style="width:13%;  vertical-align: middle; padding-left:15px;"><span t-esc="doc['cod']"/></td>
+                                                        <td class="text-center " style="width:5%;   vertical-align: middle;"><span t-esc="doc['cant']"/></td>
+                                                        <td class="text-center " style="width:8%;   vertical-align: middle;"><span t-esc="doc['um']"/></td>
+                                                        <td class="text-center" style="width:35%;  vertical-align: middle; padding-left:15px;"><span t-esc="doc['descripcion']"/></td>
+                                                        <td class="text-center " style="width:8%;   vertical-align: middle;"><span t-esc="doc['name_taxd']"/><span t-esc="doc['name_taxo']"/><span t-esc="doc['name_taxt']"/><span t-esc="doc['name_taxe']"/></td>
+                                                        <td class="text-center " style="width:18%;  vertical-align: middle;"><span t-esc="doc['precio_unitario']"/></td>
+                                                        <td class="text-center " style="width:18%;  vertical-align: middle;"><span t-esc="doc['precio_total']"/></td>
+                                                         <t t-set="cont" t-value="cont+1"/>
+                                                     </tr>
+                                                </t>
+                                                     <t t-if="cont==1">
+                                                         <t t-set="espacio" t-value="[1,2,3,4,5,6,7,8,9,10,11,12]"/>
+                                                     </t>
+                                                      <t t-if="cont==2">
+                                                         <t t-set="espacio" t-value="[1,2,3,4,5,6,7,8,9,10,11]"/>
+                                                     </t>
+                                                      <t t-if="cont==3">
+                                                         <t t-set="espacio" t-value="[1,2,3,4,5,6,7,8,9,10]"/>
+                                                     </t>
+                                                      <t t-if="cont==4">
+                                                         <t t-set="espacio" t-value="[1,2,3,4,5,6,7,8,9]"/>
+                                                     </t>
+                                                      <t t-if="cont==5">
+                                                         <t t-set="espacio" t-value="[1,2,3,4,5,6,7,8]"/>
+                                                     </t>
+                                                      <t t-if="cont==6">
+                                                         <t t-set="espacio" t-value="[1,2,3,4,5,6,7]"/>
+                                                     </t>
+                                                      <t t-if="cont==7">
+                                                         <t t-set="espacio" t-value="[1,2,3,4,5,6]"/>
+                                                     </t>
+                                                      <t t-if="cont==8">
+                                                         <t t-set="espacio" t-value="[1,2,3,4,5]"/>
+                                                     </t>
+                                                      <t t-if="cont==9">
+                                                         <t t-set="espacio" t-value="[1,2,3,4]"/>
+                                                     </t>
+                                                      <t t-if="cont==10">
+                                                         <t t-set="espacio" t-value="[1,2,3]"/>
+                                                     </t>
+                                                      <t t-if="cont==11">
+                                                         <t t-set="espacio" t-value="[1,2]"/>
+                                                     </t>
+                                                     <t t-if="cont==12">
+                                                         <t t-set="espacio" t-value="[1]"/>
+                                                     </t>
+
+                                                    <tr>
+                                                        <td colspan="6" ><p class="text-left">&amp;nbsp;</p></td>
+                                                        <td class="text-center" colspan="1" style="vertical-align: middle; border: 1px solid #000000;font-size:14px;"><p><b>&amp;nbsp;Total monto Exento Bs</b></p></td>
+                                                        <td class="text-center" style="vertical-align: middle; border: 1px solid #000000;"><span t-esc="monto_base_exento"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6" ><p class="text-center">&amp;nbsp;</p></td>
+                                                        <td class="text-center" colspan="1" style="vertical-align: middle; border: 1px solid #000000;font-size:14px;"><p><b>&amp;nbsp;Base Imponible Gravable</b></p></td>
+                                                        <td class="text-center" style="vertical-align: middle; border: 1px solid #000000;"><p><span t-esc="total"/></p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="6"><p class="text-center">&amp;nbsp;</p></td>
+                                                        <td class="text-center" colspan="1" style="vertical-align: middle; border: 1px solid #000000;font-size:14px;"><p><b>&amp;nbsp;Monto total IVA</b></p></td>
+                                                        <td class="text-center" style="vertical-align: middle; border: 1px solid #000000;"><p><span  t-esc="monto_iva"/></p></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td colspan="6"  ><p class="text-center">&amp;nbsp;</p> </td>
+                                                        <td class="text-center" colspan="1" style="vertical-align: middle; border: 1px solid #000000;font-size:14px;"><p><b>&amp;nbsp;Monto Total Bs</b></p></td>
+                                                        <td class="text-center" style="vertical-align: middle; border: 1px solid #000000;"><span t-esc="total_total"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="8">&amp;nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="8"><p class="text-left"><b> SON:</b> <span t-esc="cifra_total"/>&amp;nbsp;BOLIVARES SOBERANOS</p></td>
+                                                    </tr>
+
+                                            </table>
+
+
+                               </t>
+
+                         </t>
+                        </div>
+
+                     </div>
+                </div>
+
+        </t>
+    </template>
+
+    <report
+            id="action_reporte_cliente"
+            string="Factura Bs."
+            model="account.move"
+            report_type="qweb-pdf"
+            name="locv_reporte_facturacion.template_cliente"
+            file="locv_reporte_facturacion.template_cliente"
+            paperformat ="locv_reporte_facturacion.paperformat_account_invoice_cliente"
+
+        />
+
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <record id="account_move_corrections" model="ir.ui.view">
+                <field name="name">account.move.correcciones</field>
+                <field name="model">account.move</field>
+                <field name="inherit_id" ref="account.view_move_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='ref']" position="before">
+
+                            <label for="nro_ctrl" string="Número de Control" style="font-weight:bold;"
+                                   attrs="{'invisible':['|', ('type', 'not in', ('out_invoice', 'out_refund', 'out_receipt')), ('type', '=', 'entry')], 'readonly': [('state', 'in', ('draft', 'posted','cancel'))]}"/>
+                            <field name="nro_ctrl" string="Número de Control222" required="0" nolabel="1" force_save="1"
+                                       attrs="{'invisible':['|', ('type', 'not in', ('out_invoice', 'out_refund', 'out_receipt')), ('type', '=', 'entry')], 'readonly': [('state', 'in', ('draft', 'posted','cancel'))]}"/>
+
+                    </xpath>
+                </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="partner_ext_munici_view_form_loc_ve">
+            <field name="name">partner_extended_munici.partner.form.view.loc_ve</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='internal_notes']" position="after">
+                   <page string="Retencion Municipal">
+                        <newline/>
+                        <separator colspan="4" string="Retenciones Municipales" name="Ret_mun"/>
+                       <group col="4" colspan="2">
+                           <field name="wh_muni_agent"/>
+                           <field name="wh_muni" attrs="{'invisible':[('wh_muni_agent','=',False)], 'required':[('wh_muni_agent','=',True)]}"/>
+                       </group>
+                       <group col="4" colspan="2">
+                                <field name="property_county_wh_payable" attrs="{'required':[('wh_muni_agent','=',True)]}"/>
+                                <field name="property_county_wh_receivable"/>
+                       </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+
+    <!-- 
+    =====================================================
+    XML GENERATE
+    =====================================================
+    -->
+
+         <record id="view_generate_txt_iva_tree" model="ir.ui.view">
+            <field name="name">generate.txt.iva.tree</field>
+            <field name="model">txt.iva</field>
+            <field name="arch" type="xml">
+                <tree string="Field TXT">
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <!--field name="period_id"/-->
+                    <field name="amount_total_ret"/>
+                    <field name="amount_total_base"/>
+                    <field name="type"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_generate_txt_iva_form" model="ir.ui.view">
+            <field name="name">generate.txt.iva.form</field>
+            <field name="model">txt.iva</field>
+            <field name="arch" type="xml">
+                <form string="Líneas de Retención para TXT IVA">
+                    <header>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done" select="2"/>
+                    </header>
+                    <group col="4" colspan="4">
+                        <field name="name"/>
+                        <field name="type"/>
+                    </group>
+                    <newline/>
+                    <group col="6" colspan="4">
+                        <!--field name="period_id" widget="selection"/-->
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                    <notebook>
+                        <page string="Lineas de Retención">
+                            <field name="txt_ids" nolabel="1" colspan="4" widget="one2many_list">
+                                <tree string="Field of lines TXT">
+                                    <field name="partner_id" readonly="1" force_save="1"/>
+                                    <field name="invoice_id" readonly="1" force_save="1"/>
+                                    <field name="voucher_id" readonly="1" force_save="1"/>
+                                    <field name="untaxed" readonly="1" force_save="1"/>
+                                    <field name="amount_withheld" readonly="1" force_save="1"/>
+                                    <field name="tax_wh_iva_id" readonly="1" force_save="1"/>
+                                    <field name="amount_sdcf" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                            <!--group>
+                                <field name="state" select="2"/>
+                            </group-->
+                            <group col="7" colspan="3">
+                                    <button name="action_generate_lines_txt" string="Generar Lineas TXT" states="draft" type="object"  class="oe_highlight"/>
+                                    <button name="action_confirm" string="Confirmar" states="draft" type="object"  class="oe_highlight"/>
+                                    <button name="action_done" string="Generar TXT" states="confirmed" type="object"  class="oe_highlight"/>
+                                    <button name="action_anular" string="Cancelar" states="confirmed,done" type="object"  class="oe_highlight"/>
+                                    <field name="txt_name" invisible="1"/>
+                                    <field name="txt_file" string=" " filename="txt_name" readonly="1"/>
+                            </group >
+                            <group col="2" colspan="2">
+                                <field name="amount_total_ret" readonly="1" force_save="1"/>
+                                <field name="amount_total_base"  readonly="1" force_save="1"/>
+                            </group>
+                        </page>
+                          <page string="Otra información">
+                               <field name="company_id"/>
+                          </page>
+                    </notebook>
+                    <field name="message_ids" colspan="4" widget="mail_thread" nolabel="1"/>
+                </form>
+            </field>
+        </record>
+<!--        <record id="view_generate_txt_filter" model="ir.ui.view">-->
+<!--            <field name="name">txt.iva.search</field>-->
+<!--            <field name="model">txt.iva</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Search File XML">-->
+<!--                   <group col="10" colspan="4">-->
+<!--                        <filter name="draft" icon="terp-gtk-media-pause" string="Draft" domain="[('state','=','draft')]" help="Draft Document of Generate file XML"/>-->
+<!--                        <filter name="confirmed" icon="terp-camera_test" string="Confirmed" domain="[('state','=','confirmed')]" help="Confirmed Document of Generate file XML"/>-->
+<!--                        <filter name="done" icon="terp-check" string="Done" domain="[('state','=','done')]" help="Done Document of Generate file XML"/>-->
+<!--                        <filter name="cancel" icon="terp-dialog-close" string="Cancel" domain="[('state','=','cancel')]" help="Cancel Document of Generate file XML"/>-->
+<!--                        <newline/>-->
+<!--                        <field name="date_start"/>-->
+<!--                        <field name="date_end"/>-->
+<!--                        <separator orientation="vertical"/>-->
+<!--                        &lt;!&ndash;field name="period_id"/&ndash;&gt;-->
+<!--                        <separator orientation="vertical"/>-->
+<!--                        <field name="state"/>-->
+<!--                        <separator orientation="vertical"/>-->
+<!--                        <field name="company_id"/>-->
+<!--                    </group>-->
+<!--                    <newline/>-->
+<!--                    <group expand="0" string="Group By...">-->
+<!--                        &lt;!&ndash;filter string="Period" icon="terp-go-month" context="{'group_by':'period_id'}"/&ndash;&gt;-->
+<!--                        <separator orientation="vertical"/>-->
+<!--                        <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>-->
+<!--                        <separator orientation="vertical"/>-->
+<!--                        <filter string="Type" context="{'group_by':'type'}"/>-->
+<!--                        <separator orientation="vertical"/>-->
+<!--                        <filter string="Company" context="{'group_by':'company_id'}"/>-->
+<!--                    </group>-->
+<!--               </search>-->
+<!--            </field>-->
+<!--        </record>-->
+        <record model="ir.actions.act_window" id="action_generate_text_iva">
+            <field name="name">Generar TXT</field>
+            <field name="res_model">txt.iva</field>
+            <field name="type">ir.actions.act_window</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+<!--            <field name="search_view_id" ref="view_generate_txt_filter"/>-->
+            <field name="help"> Con esta opción puedes crear y manejar la generación del Archivo TXT de IVA, requerido por la localización venezolana para los agentes de retención de IVA</field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_generate_txt_iva_tree">
+            <field name="sequence" eval="10"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_generate_txt_iva_tree"/> 
+            <field name="act_window_id" ref="action_generate_text_iva"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_generate_txt_iva_form">
+            <field name="sequence" eval="20"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_generate_txt_iva_form"/>
+            <field name="act_window_id" ref="action_generate_text_iva"/>
+        </record>
+
+        <menuitem name="Generar TXT IVA" id="menu_action_generate_txt_iva" parent="locv_account_fiscal_requirements.menu_venezuela_reporting" action="action_generate_text_iva"/>
+
+    </data>
+</odoo>

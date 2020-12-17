@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_locv_retention_account_retention_islr,locv_retention_islr.account.retention.islr,model_account_retention_islr,locv_grupo_localizacion.group_localizacion,1,1,1,1
+
+
+
+

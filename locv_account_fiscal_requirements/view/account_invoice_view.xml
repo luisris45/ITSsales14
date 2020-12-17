@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+            <menuitem id="menu_venezuela_reporting" name="Informes de Venezuela" parent="account.menu_finance_reports"/>
+    <!--
+    =====================================================
+    Invoices Extension FORM
+    =====================================================
+    -->
+
+
+        <record id="aacount_label_for_invoice_date" model="ir.ui.view">
+            <field name="name">invoice.label.for.date</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='date']" position="attributes">
+                    <attribute name="attrs">
+                        {'invisible': False}
+                    </attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='ref']" position="before">
+                    <field name="marck_paper" string="Papel para anular" required="0" attrs="{'invisible': [ '|', ('state','!=','posted'),('type', 'not in',  ('out_invoice', 'out_refund', 'out_receipt','in_invoice', 'in_refund', 'in_receipt'))]}"/>
+                    <field name="nro_ctrl" string="Número de Control" force_save="1" attrs="{'required': [('type', '!=', 'entry'), ('type', 'not in',  ('out_invoice', 'out_refund', 'out_receipt'))], 'readonly':[('state','not in','draft')], 'invisible': [('type', 'not in',  ('in_invoice', 'in_refund', 'in_receipt'))]}" context ="{'res_partner_search_mode': 'supplier'}"/>
+                    <field name="supplier_invoice_number" force_save="1" string="Número de Factura de Proveedor" attrs="{'required': [ ('type', '!=', 'entry'), ('type', 'not in',  ('out_invoice', 'out_refund', 'out_receipt'))], 'readonly':[('state','not in','draft')], 'invisible': [('type', 'not in',  ('in_invoice', 'in_refund', 'in_receipt'))]}" context ="{'res_partner_search_mode': 'supplier'}"/>
+                </xpath>
+
+
+                <xpath expr="//page[@name='other_info']/group/group[3]" position="after">
+                    <group>
+                     <separator string="Informacion fiscal"/>
+                        <field name="sin_cred"/>
+                        <field name="loc_req" invisible="1"/>
+                        <field name="invoice_printer" attrs="{'invisible':[('loc_req','=',True)]}"/>
+                        <field name="fiscal_printer" attrs="{'invisible':[('loc_req','=',True)]}"/>
+                        <field name="z_report" attrs="{'invisible':[('loc_req','=',True)]}"/>
+
+                        <button name="%(action_wiz_nroctrl)d" type="action" string="Cambiar Número de Control" colspan="6" attrs="{'invisible': [('state','=','draft')]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ##############################################
+               Se agrega filtro para las facturas con papel dañado
+         ###################################################
+         -->
+        <record id="paper_anulado_view_invoice_search" model="ir.ui.view">
+            <field name="name">paper.anulado.view.invoice.search</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+
+                    <xpath expr="//filter[@name='late']" position="after">
+                    <!--separator-->
+                        <filter name="paper_anu" string="Papel Dañado" domain="[('paper_anu', '=', True)]"/>
+                    <!--/separator-->
+                    </xpath>
+
+
+            </field>
+        </record>
+        <!-- ##########################################################-->
+
+<!--        <record id="action_sale_debit_tree" model="ir.actions.act_window">-->
+<!--            <field name="name">Customer Debit Notes</field>-->
+<!--            <field name="res_model">account.move</field>-->
+<!--&lt;!&ndash;            <field name="view_type">form</field>&ndash;&gt;-->
+<!--            <field name="view_mode">tree,form,calendar,graph</field>-->
+<!--            <field eval="False" name="view_id"/>-->
+<!--            <field name="domain">[('type','=','out_invoice' or 'in_invoice'),('parent_id','!=',False)]</field>-->
+<!--            <field name="context">{'default_type':'out_invoice' or 'in_invoice', 'type':'out_invoice' or 'in_invoice', 'journal_type': 'sale_debit' or 'purchase_debit'}</field>-->
+<!--            <field name="search_view_id" ref="account.view_account_invoice_filter"/>-->
+<!--            <field name="help" type="html">-->
+<!--              <p class="oe_view_nocontent_create">-->
+<!--                Click to create a customer debit note.-->
+<!--              </p><p>-->
+<!--                ODOO's electronic invoicing allows to ease and fasten the-->
+<!--                collection of customer payments. Your customer receives the-->
+<!--                invoice by email and he can pay online and/or import it-->
+<!--                in his own system.-->
+<!--              </p><p>-->
+<!--                The discussions with your customer are automatically displayed at-->
+<!--                the bottom of each invoice.-->
+<!--              </p>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        <record id="action_sale_debit_tree_view" model="ir.actions.act_window.view">-->
+<!--            <field eval="1" name="sequence"/>-->
+<!--            <field name="view_mode">tree</field>-->
+<!--            <field name="act_window_id" ref="action_sale_debit_tree"/>-->
+<!--        </record>-->
+
+<!--        <record id="action_sale_debit_form_view" model="ir.actions.act_window.view">-->
+<!--            <field eval="2" name="sequence"/>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="view_id" ref="account.view_move_form"/>-->
+<!--            <field name="act_window_id" ref="action_sale_debit_tree"/>-->
+<!--        </record>-->
+
+<!--        <menuitem action="action_sale_debit_tree" id="menu_action_sale_debit_tree" parent="account.menu_finance_receivables"/>-->
+
+
+<!--        <record id="action_purchase_debit_tree" model="ir.actions.act_window">-->
+<!--            <field name="name">Supplier Debit Notes</field>-->
+<!--            <field name="res_model">account.move</field>-->
+<!--&lt;!&ndash;            <field name="view_type">form</field>&ndash;&gt;-->
+<!--            <field name="view_mode">tree,form,calendar,graph</field>-->
+<!--            <field eval="False" name="view_id"/>-->
+<!--            <field name="domain">[('type','=','in_invoice'),('parent_id','!=',False)]</field>-->
+<!--            <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice', 'journal_type': 'purchase_debit'}</field>-->
+<!--            <field name="search_view_id" ref="account.view_account_invoice_filter"/>-->
+<!--            <field name="help" type="html">-->
+<!--              <p class="oe_view_nocontent_create">-->
+<!--                Click to record a new supplier debit note.-->
+<!--              </p><p>-->
+<!--                You can control the invoice from your supplier according to-->
+<!--                what you purchased or received. OpenERP can also generate-->
+<!--                draft invoices automatically from purchase orders or receipts.-->
+<!--              </p>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+
+<!--        <record id="action_purchase_debit_tree_view" model="ir.actions.act_window.view">-->
+<!--            <field eval="1" name="sequence"/>-->
+<!--            <field name="view_mode">tree</field>-->
+<!--            <field name="act_window_id" ref="action_purchase_debit_tree"/>-->
+<!--        </record>-->
+
+<!--        <record id="action_purchase_debit_form_view" model="ir.actions.act_window.view">-->
+<!--            <field eval="2" name="sequence"/>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="view_id" ref="account.view_move_form"/>-->
+<!--            <field name="act_window_id" ref="action_purchase_debit_tree"/>-->
+<!--        </record>-->
+
+<!--        <menuitem action="action_purchase_debit_tree" id="menu_action_purchase_debit_tree" parent="account.menu_finance_payables"/>-->
+
+<!--        <record id="account.action_invoice_tree2" model="ir.actions.act_window">-->
+<!--            <field name="domain">[('type','=','in_invoice'),('parent_id','=',False)]</field>-->
+<!--        </record>-->
+
+<!--        <record id="account.action_invoice_tree1" model="ir.actions.act_window">-->
+<!--            <field name="domain">[('type','=','out_invoice'),('parent_id','=',False)]</field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>
